@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BookOrderingSystem.BillingService": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

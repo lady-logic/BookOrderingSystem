@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BookOrderingSystem.OrderService": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
