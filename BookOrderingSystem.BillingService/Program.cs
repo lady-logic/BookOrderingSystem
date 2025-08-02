@@ -7,7 +7,8 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddMassTransit(x =>
         {
-            x.AddConsumer<BookOrderConsumer>(); // Consumer registrieren!
+            x.AddConsumer<BookOrderConsumer>(); 
+            x.AddConsumer<DeadLetterConsumer>();
 
             x.UsingRabbitMq((context, cfg) =>
             {
@@ -15,6 +16,12 @@ var host = Host.CreateDefaultBuilder(args)
                 {
                     h.Username("guest");
                     h.Password("guest");
+                });
+
+                cfg.UseMessageRetry(r =>
+                {
+                    r.Handle<PaymentDeclinedException>();
+                    r.Interval(5, TimeSpan.FromSeconds(2));                       
                 });
 
                 cfg.ConfigureEndpoints(context); // Automatisches Routing!
